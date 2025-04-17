@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Bitcoin",
+        "symbol": "btc",
+        "current_price": 85049,
+        "high_24h": 85377,
+        "low_24h": 83900,
+        "price_change_24h": 631.6,
+        "last_updated": "2025-04-17T22:20:48.407Z"
+    }
+]
