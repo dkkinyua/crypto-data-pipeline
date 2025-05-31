@@ -60,7 +60,7 @@ def new_crypto_pipeline_dag():
 
             else:
                 print(f"Requests error: {response.status_code}, {response.text}")
-                
+
         return coin_data
 
     # transform and load data into db
@@ -72,13 +72,14 @@ def new_crypto_pipeline_dag():
 
         engine = create_engine(DB_URL)
         try:
-            df.to_sql(name='hourly_crypto_data', con=engine, schema='crypto', if_exists='append')
+            df.to_sql(name='hourly_crypto_data', con=engine, schema='crypto', index=False, if_exists='append')
             print(f"Data loaded successfully!")
         except Exception as e:
-            print("There is an error")
             print(f"Loading error: {e}")
     
     data = extract_data()
     transform_and_load(data)
         
 crypto_dag = new_crypto_pipeline_dag()
+
+#
