@@ -16,3 +16,7 @@ def test_dag():
     say_hello()
 
 dag_test = test_dag()
+
+# let's test this DAG
+if __name__ == '__main__':
+    dag_test.test()
