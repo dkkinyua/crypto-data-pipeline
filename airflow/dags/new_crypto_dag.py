@@ -1,5 +1,4 @@
 import os
-import json
 import requests
 import pandas as pd
 from airflow.decorators import dag, task
@@ -10,6 +9,7 @@ from sqlalchemy import create_engine
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 DB_URL = os.getenv("DB_URL")
+TEST_DB_URL = os.getenv("TEST_DB_URL")
 
 default_args = {
     'owner': 'deecodes',
@@ -71,7 +71,7 @@ def new_crypto_pipeline_dag():
         df.set_index('name', inplace=True)
         df_trans = df.T # transpose the dataframe so that coin names are now column values
     
-        engine = create_engine(DB_URL)
+        engine = create_engine(TEST_DB_URL)
         try:
             df_trans.to_sql(name='hourly_crypto_data', con=engine, schema='crypto', index=True, if_exists='append')
             print(f"Data loaded successfully!")
@@ -82,5 +82,3 @@ def new_crypto_pipeline_dag():
     transform_and_load(data)
         
 crypto_dag = new_crypto_pipeline_dag()
-
-#
