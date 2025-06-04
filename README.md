@@ -1,6 +1,6 @@
 # Crypto Data Analysis Pipeline
 
-This project contains an ETL (Extract, Transform, Load) pipeline that fetches cryptocurrency data from CoinGecko's API, transforms it and loads it into a PostgreSQL hosted on a Azure VM running on port 
+This project contains an ETL (Extract, Transform, Load) pipeline that fetches cryptocurrency data from CoinGecko's API, transforms it and loads it into a PostgreSQL hosted on a Azure VM running on port `5005`
 
 ## Project Features
 - Stores hourly cryptocurrency data (name, price, market cap, volume, time) into a PostgreSQL database.
