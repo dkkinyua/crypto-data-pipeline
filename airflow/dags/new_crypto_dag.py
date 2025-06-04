@@ -68,12 +68,10 @@ def new_crypto_pipeline_dag():
     def transform_and_load(data):
         df = pd.DataFrame(data)
         df['time'] = pd.to_datetime(df['time'], utc=True)
-        df.set_index('name', inplace=True)
-        df_trans = df.T # transpose the dataframe so that coin names are now column values
-    
-        engine = create_engine(TEST_DB_URL)
+        df.set_index('time', inplace=True)
+        engine = create_engine(DB_URL)
         try:
-            df_trans.to_sql(name='hourly_crypto_data', con=engine, schema='crypto', index=True, if_exists='append')
+            df.to_sql(name='hourly_crypto_data', con=engine, schema='crypto', index=True, if_exists='append')
             print(f"Data loaded successfully!")
         except Exception as e:
             print(f"Loading error: {e}")
